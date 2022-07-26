@@ -537,6 +537,12 @@ ol {
     padding-bottom: 70px;
 }
 
+.section-padding-50-70 {
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+
 .section-padding-0-50 {
     padding-top: 0;
     padding-bottom: 50px;
@@ -727,7 +733,33 @@ ol {
 .dream-dots span:nth-child(7) {
     background-color: #8c7ae6;
 }
+.nav-dashboard {
+    width: 100%;
+}
+.nav-dashboard .nav-item {
+    margin-left: -20px;
+    height: 5px;
+    margin-bottom: 35px;
+}
+.nav-dashboard .nav-item a{
+    margin-right:0px;
+    color: #000;
+    font-size: 14px;
+    border-left: 4px solid #fff;
+    line-height: 13px;
+    padding-left: 20px;
+    /* background-color: #00B7C2; */
 
+}
+.nav-dashboard .nav-item a:hover {
+    border-left: 4px solid #007bff;
+    color: #007bff;
+}
+
+.nav-dashboard .nav-item .active {
+    border-left: 4px solid #007bff;
+    color: #007bff;
+}
 .login-btn {
     position: relative;
     z-index: 1;
@@ -742,7 +774,7 @@ ol {
     background: #516af0;
     height: 35px;
     border-radius: 5px;
-    border: 1px solid #fff !important;
+    border: 1px solid #516af0 !important;
     letter-spacing: 1px;
 }
 
@@ -3818,7 +3850,7 @@ textarea:required {
 .breadcumb-area {
     position: relative;
     z-index: 1;
-    height: 350px !important;
+    height: 300px !important;
 }
 
 .breadcumb-content {
@@ -3828,7 +3860,8 @@ textarea:required {
     top: 0;
     left: 0;
     z-index: 10;
-    background: url(../img/bg-img/bread.jpg) repeat;
+    /* background: url(../img/bg-img/bread.jpg) repeat; */
+    background-color: #1b2a4e!important;
 }
 
 .breadcumb--con {

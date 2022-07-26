@@ -57,7 +57,7 @@
                         <div class="classynav">
 
                             <!-- Button -->
-                            <a href="#" class="btn login-btn ml-50">Log in</a>
+                            <a href="{{route('login')}}" class="btn login-btn ml-50">Log in</a>
                         </div>
                         <!-- Nav End -->
                     </div>
@@ -67,9 +67,6 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Welcome Area Start ##### -->
-   
-    <!-- ##### Welcome Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
     <section class="section-padding-100 contact_us_area" id="contact">

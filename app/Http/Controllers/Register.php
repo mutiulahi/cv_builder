@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\confirm_Mail;
 
 class Register extends Controller
 {
@@ -28,7 +30,11 @@ class Register extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        
-        return redirect('/login');
+        if ($user) {
+            Mail::to($user->email)->send(new confirm_Mail($user));
+            return redirect()->route('login')->with('success', 'Please check your email to confirm your account.');
+        } else {
+            return redirect()->route('register')->with('error', 'Something went wrong.');
+        }
     }
 }

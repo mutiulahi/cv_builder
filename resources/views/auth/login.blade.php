@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Contact Us</title>
+    <title>Login</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -63,7 +63,7 @@
                         <div class="classynav">
 
                             <!-- Button -->
-                            <a href="#" class="btn login-btn ml-50">Log in</a>
+                            <a href="{{route('register')}}" class="btn login-btn ml-50">Sign Up</a>
                         </div>
                         <!-- Nav End -->
                     </div>
@@ -85,8 +85,7 @@
                     <div class="section-heading text-center">
                         <!-- Dream Dots -->
                         
-                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">Let's create your account !</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.4s">Provide your details below</p>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">We're glad to see you again!</h2>
                         <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                             <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                         </div>
@@ -102,47 +101,36 @@
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="text" name="name" id="name3" required="">
+                                        <input type="email" name="email" id="name4" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>Name</label>
-                                    </div>
-                                </div>
-                               <div class="col-12 col-md-12">
-                                    <div class="group">
-                                        <input type="text" name="name" id="name4" required="">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
+                                        @error('email')
+                                            <span class="text-danger" style="font-size: 12px;">{{$message}}</span>
+                                        @enderror
                                         <label>Email</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="password" name="name" id="name5" required="">
+                                        <input type="password" name="password" id="name5" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
+                                        @error('password')
+                                            <span class="text-danger" style="font-size: 12px;">{{$message}}</span>
+                                        @enderror
                                         <label>Password</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-12">
-                                    <div class="group">
-                                        <input type="password" name="name" id="name6" required="">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>Confirm Password</label>
-                                    </div>
-                                </div>
-                                
                                 <div class="col-12 col-sm-5 text-left ">
-                                    <button type="submit" class="btn dream-btn">Register</button>
+                                    <button type="submit" class="btn dream-btn">Login</button>
                                 </div>
-                                <div class="col-12 col-sm-7 text-left">
-                                    <p class="mb-0 mt-10">Already have an account? <a href="#" >Log in</a></p>
-                                </div>
+                                {{-- <div class="col-12 col-sm-7 text-left">
+                                    <p class="mb-0 mt-10">Don't have an account? <a href="#" >Sign Up</a></p>
+                                </div> --}}
                             </div>
                         </form>
                         <div class="other-accounts text-center">
-                            <p class="w-text">Login with other account</p>
+                            <p class="mb-0 mt-8" style="color: #d6d2d2">Don't have an account? <a href="{{route('register')}}" >Sign Up</a></p>
                         </div>
                     </div>
                 </div>
@@ -150,101 +138,6 @@
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
-
-
-    <!-- ##### Footer Area Start ##### -->
-    {{-- <footer class="footer-area bg-img">
-
-        <div class="footer-content-area spec">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-12 col-lg-4 col-md-6">
-                        <div class="footer-copywrite-info">
-                            <!-- Copywrite -->
-                            <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
-                                <div class="footer-logo">
-                                    <a href="#"><img src="img/core-img/logo.png" alt="logo"> CV Builder </a>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit ducimus voluptatibus neque illo id repellat quisquam? Autem expedita earum quae laborum ipsum ad.</p>
-                            </div>
-                            <!-- Social Icon -->
-                            <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-3 col-md-6">
-                        <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
-                            <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
-                                <h5>PRIVACY & TOS</h5>
-                                <a href="#">
-                                    <p>Advertiser Agreement</p>
-                                </a>
-                                <a href="#">
-                                    <p>Acceptable Use Policy</p>
-                                </a>
-                                <a href="#">
-                                    <p>Privacy Policy</p>
-                                </a>
-                                <a href="#">
-                                    <p>Technology Privacy</p>
-                                </a>
-                                <a href="#">
-                                    <p>Developer Agreement</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-2 col-md-6 ">
-                        <!-- Content Info -->
-                        <div class="contact_info_area d-sm-flex justify-content-between">
-                            <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.2s">
-                                <h5>NAVIGATE</h5>
-                                <a href="#">
-                                    <p>Advertisers</p>
-                                </a>
-                                <a href="#">
-                                    <p>Developers</p>
-                                </a>
-                                <a href="#">
-                                    <p>Resources</p>
-                                </a>
-                                <a href="#">
-                                    <p>Company</p>
-                                </a>
-                                <a href="#">
-                                    <p>Connect</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-lg-3 col-md-6 ">
-                        <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
-                            <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
-                                <h5>CONTACT US</h5>
-                                <p>Mailing Address:xx00 E. Union Ave</p>
-                                <p>Suite 1100. Denver, CO 80237</p>
-                                <p>+999 90932 627</p>
-                                <p>support@yourdomain.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </footer> --}}
-    <!-- ##### Footer Area End ##### -->
 
     <!-- ########## All JS ########## -->
     <!-- jQuery js -->

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Register;
 use App\Http\Controllers\Login;
+use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,8 @@ Route::post('/register', [Register::class, 'register_action']);
 
 Route::get('/login', [Login::class, 'index'])->name('login');
 Route::post('/login', [Login::class, 'login_action']);
+
+
+// Dashboard
+Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+Route::get('/dashboard/user_profile', [Dashboard::class, 'user_profile_index'])->name('user_profile');
