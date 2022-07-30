@@ -9,10 +9,10 @@
           <?php $current_file_name = basename($_SERVER['REQUEST_URI'], ".php"); ?>
           <ul class="nav-dashboard">
              <li class="nav-item">
-                <a class="nav-link {{ $current_file_name == 'dashboard' ? 'active' : '' }}" href="user-profile.html">Dashboard</a>
+                <a class="nav-link {{ $current_file_name == 'dashboard' ? 'active' : '' }}" href="{{route('dashboard')}}">Dashboard</a>
              </li>
              <li class="nav-item">
-                <a class="nav-link {{ $current_file_name == 'user_profile' ? 'active' : '' }}" href="user-profile.html">User Profile</a>
+                <a class="nav-link {{ $current_file_name == 'user_profile' ? 'active' : '' }}" href="{{route('user_profile')}}">User Profile</a>
              </li>
              <li class="nav-item">
                 <a class="nav-link" href="social-profiles.html">Create CV</a>
@@ -26,6 +26,8 @@
              <li class="nav-item">
                 <a class="nav-link" href="add-property.html">Scholarship</a>
              </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="/logout">Log Out</a>
           </ul>
        </div>
     </div>

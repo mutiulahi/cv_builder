@@ -96,12 +96,29 @@
             <!-- registration Form -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-8">
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                             {{session('error')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+					@endif
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{session('success')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+					@endif
                     <div class="contact_form">
-                        <form action="#" method="post" id="main_Signup_form" novalidate="">
+                        <form action="{{route('login')}}" method="post" id="main_Signup_form">
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="email" name="email" id="name4" required="">
+                                        <input type="email" name="email" id="name4" value="{{old('email')}}" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         @error('email')
@@ -112,7 +129,7 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="password" name="password" id="name5" required="">
+                                        <input type="password" name="password" value="{{old('password')}}" id="name5" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         @error('password')
@@ -124,9 +141,6 @@
                                 <div class="col-12 col-sm-5 text-left ">
                                     <button type="submit" class="btn dream-btn">Login</button>
                                 </div>
-                                {{-- <div class="col-12 col-sm-7 text-left">
-                                    <p class="mb-0 mt-10">Don't have an account? <a href="#" >Sign Up</a></p>
-                                </div> --}}
                             </div>
                         </form>
                         <div class="other-accounts text-center">

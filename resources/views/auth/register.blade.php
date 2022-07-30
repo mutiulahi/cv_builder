@@ -88,16 +88,32 @@
             <!-- registration Form -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-8">
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{session('error')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{session('success')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="contact_form">
                         <form action="{{route('register')}}" method="post" id="main_Signup_form">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="text" name="name" id="name3" required="">
+                                        <input type="text" name="full_name" id="name3" value="{{old('full_name')}}" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        @error('name')
+                                        @error('full_name')
                                             <span class="text-danger" style="font-size: 12px;">{{$message}}</span>
                                         @enderror
                                         <label>Full Name</label>
@@ -105,7 +121,7 @@
                                 </div>
                                <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="email" name="email" id="name4" required="">
+                                        <input type="email" name="email" id="name4" value="{{old('email')}}" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         @error('email')
@@ -116,7 +132,7 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="password" name="password" id="name5" required="">
+                                        <input type="password" name="password" id="name5" value="{{old('password')}}" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         @error('password')
@@ -127,7 +143,7 @@
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <div class="group">
-                                        <input type="password" name="password_confirmation" id="name6" required="">
+                                        <input type="password" name="password_confirmation" id="name6" value="{{old('password_confirmation')}}" required="">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         @error('password_confirmation')

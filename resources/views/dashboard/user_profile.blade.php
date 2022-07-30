@@ -11,13 +11,13 @@
     <title>User Profile</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="../img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 
 </head>
 
@@ -57,84 +57,93 @@
             
             <div class="row">
                 <!-- Single Table -->
-                <div class="col-lg-3 col-md-4">
-                    <!-- Collapse -->
-                    <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.2s">
-                       <div class="card-body">
-                          <!-- Heading -->
-                          <h6 class="text-uppercase ">
-                             Account
-                          </h6>
-                          <?php $current_file_name = basename($_SERVER['REQUEST_URI'], ".php"); ?>
-                          <ul class="nav-dashboard">
-                             <li class="nav-item">
-                                <a class="nav-link {{ $current_file_name == 'dashboard' ? 'active' : '' }}" href="user-profile.html">Dashboard</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link " href="user-profile.html">User Profile</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="social-profiles.html">Create CV</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="my-properties.html">Apply for Job</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="favorite-properties.html">Mentoring programme</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="add-property.html">Scholarship</a>
-                             </li>
-                          </ul>
-                       </div>
-                    </div>
-                </div>
-                {{-- <div class="col-lg-4 col-md-6">
-                    <div class="who-we-contant mt-s">
-                        <div class="dream-dots">
-                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                        <h4>Our Pricing</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at dictum risus, non suscipit arcu. Quisque aliquam posuere tortor, sit amet convallis nunc scelerisque in.</p>
-
-                        <div class="free-7">
-                            <span>Lets Build CV</span>
-                            <p> with 7days of Free Trial</p>
-                        </div>
-                        <div class="terms mt-30">
-                            <a href="#">Terms & Conditions </a>
-                            <p>subject to change with perior notice</p>
-                        </div>
-                        
-                    </div>
-                </div> --}}
+                @include('dashboard.layout.sidebar')
+               
                 <div class="col-lg-8 col-md-8">
                     <!-- Single Table -->
                     <div class="col-lg-12 col-md-12">
-                        <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="price_table_text">
-                                <h1>JOB</h1>
-                                <h5 class="gradient-text cyan">application</h5>
+                        @if(session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{session('error')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="table_text_details">
-                                <h3>Job Application Status</h3>
-                                <p>Yet to activate</p>
-                                {{-- <a href="contact-us.html" class="button mt-s">Get Started</a> --}}
+                        @endif
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{session('success')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="table_text_details" style="padding-top: 20px;">
+                                <h3>Profile Details</h3>
+                                <p>Edit your profile details</p>
+                                <div class="row">
+                                    <div class="col-md-4" >
+                                        <p>Profile Picture</p>
+                                        <img src="{{asset('/storage/profile_pic/'.Auth::user()->profile_pic)}}" alt="sds" srcset="" height="100px" width="100px">
+                                    </div>
+                                    <div class="col-md-8 form-me">
+                                        <form action="{{route('user_profile')}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <label class="label-me" for="">Full Name</label>
+                                            <input type="text" name="full_name" id="" placeholder="Full Name" value="{{auth()->user()->name}}">
+                                            <label class="label-me" for="">Email</label>
+                                            <input type="email" name="email" id="" placeholder="Email" value="{{auth()->user()->email}}" readonly>
+                                            <label class="label-me" for="">Profile Picture</label>
+                                            <input type="file" name="profile_pic"><br><br>
+                                            <button type="submit" class="btn btn-primary"> Update </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Single Table -->
                     <div class="col-lg-12 col-md-12">
-                        <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="price_table_text">
-                                <h1>CV</h1>
-                                <h5 class="gradient-text cyan">creation</h5>
+                        @if(session('error_pass'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{session('error_pass')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="table_text_details">
-                                <h3>CV / RESUME</h3>
-                                <p>Application completed</p>
-
-                                <a href="contact-us.html" class="button mt-s">create / edit</a>
+                        @endif
+                        @if(session('success_pass'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{session('success_pass')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="table_text_details" style="padding-top: 20px;">
+                                <h3 >Password</h3>
+                                <p> Change your password</p>
+                                <div class="row">
+                                    <div class="col-md-12 form-me">
+                                        @if ($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                                <code style="font-size: 12px;">{{$error}}</code>
+                                            @endforeach
+                                        @endif
+                                        <form action="{{route('user_password')}}" method="post">
+                                            @csrf
+                                            <label class="label-me" for="">Old Password</label>
+                                            <input type="text" name="old_password" id="" placeholder="Old Password">
+                                            <label class="label-me" for="">New Password</label>
+                                            <input type="text" name="new_password" id="" placeholder="New Password">
+                                            <label class="label-me" for="">Confirm Password</label>
+                                            <input type="text" name="new_password_confirmation" id="" placeholder="Confirm Password"><br><br>
+                                            <button type="submit" class="btn btn-primary"> Update </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,21 +232,17 @@
 
     <!-- ########## All JS ########## -->
     <!-- jQuery js -->
-    <script src="js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="../js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <!-- Parallax js -->
-    <script src="js/dzsparallaxer.js"></script>
+    <script src="../js/dzsparallaxer.js"></script>
     <!-- Active js -->
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
-
-
-
-<!-- Mirrored from geeko.netlify.app/pricing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Jul 2022 19:23:00 GMT -->
 </html>

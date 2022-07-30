@@ -5,7 +5,7 @@
             <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                 <!-- Logo -->
-                <a class="nav-brand light" href="index-2.html"><img src="img/core-img/logo.png" alt="logo"> CV Builder.</a>
+                <a class="nav-brand light" href="index-2.html"><img src="{{asset('img/core-img/logo.png')}}" alt="logo"> CV Builder.</a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">

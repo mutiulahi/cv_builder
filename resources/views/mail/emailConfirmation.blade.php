@@ -160,7 +160,7 @@
 
                                         <div style="line-height: 35px">
 
-                                            <span style="color: #4F016A;">P</span><span style="background: #4F016A;  display: inline-block;  line-height: .9; color: #ffffff;">ropertyreal</span>
+                                            <span style="color: #516af0; font-size:20px;">O</span><span style="background: #516af0;  display: inline-block;  line-height: .9; color: #ffffff;">setserv</span>
 
                                         </div>
                                     </td>
@@ -170,27 +170,6 @@
                                 </tr>
                                 <tr>
                                     <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
-                                </tr>
-
-                                <tr>
-                                    <td align="center">
-                                        <table width="360 " border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="container590 hide">
-                                            <tr>
-                                                <td width="120" align="center" style="font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                                    <a href="" style="color: #312c32; text-decoration: none;">BUY</a>
-                                                </td>
-                                                <td width="120" align="center" style="font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                                    <a href="" style="color: #312c32; text-decoration: none;">SELL</a>
-                                                </td>
-                                                <td width="120" align="center" style="font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                                    <a href="" style="color: #312c32; text-decoration: none;">LEASE</a>
-                                                </td>
-                                                <td width="120" align="center" style="font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-                                                    <a href="" style="color: #312c32; text-decoration: none;">RENT</a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
                                 </tr>
                             </table>
                         </td>
@@ -220,7 +199,7 @@
 
                             <div style="line-height: 35px">
 
-                                Welcome to the <span style="color: #4F016A;">Propertyreal</span>
+                                Welcome to the <span style="color: #516af0;">setserv</span>
 
                             </div>
                         </td>
@@ -253,21 +232,22 @@
 
                                         <p style="line-height: 24px; margin-bottom:15px;">
 
-                                            {{$mailData['email']}} , 
+                                            {{$mailDetail['name']}},<br>
+                                            {{$mailDetail['unique_id']}} 
 
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
 
-                                            This is a confirmation mail that you have successfully subscribed for updates on the launching of the Propertyreal online marketplace website.
+                                            You're almost ready to get started. Please click on the button below to verify your email address and enjoy exclusive cleaning services with us!
                                             
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            You will be receiving the latest updates on the Propertyreal website through your email.
+                                            <a href="localhost:8000" style="display: inline-block; padding: 10px 20px; border-radius: 5px; color: #ffffff; font-size: 14px; line-height: 20px; background: #516af0; text-decoration: none;">Verify Email</a>
                                         </p>
 
                                         <p style="line-height: 24px">
-                                            Love,</br>
-                                            The Propertyreal team
+                                            Thanks,</br>
+                                            The setserv team
                                         </p>
 
                                     </td>
@@ -276,7 +256,7 @@
                                     <td align="left" style="color: #888888; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 23px;" class="text_color">
                                         <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
 
-                                            Email us: <br/> <a href="mailto:" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">tesleemolamilekan902@gmail.com</a>
+                                            Email us: <br/> <a href="mailto:info@setserv.com" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">info@setserv.com</a>
 
                                         </div>
                                     </td>
