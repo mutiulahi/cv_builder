@@ -5,18 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Personal_detail;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\confirm_Mail;
 
 
 class Dashboard extends Controller
 {
-    //
+    // dashboard index
     public function index()
     {
         // return view('dashboard');
-        return view('dashboard.dashboard');
+        $user_id = Auth::user()->unique_id;
+        $personal_detail = Personal_detail::where('user_id', $user_id)->first();
+        return view('dashboard.dashboard', compact('personal_detail'));
     }
+
+    public function resume_cv()
+    {
+        // return view('dashboard');
+        $user_id = Auth::user()->unique_id;
+        $personal_detail = Personal_detail::where('user_id', $user_id)->first();
+        return view('dashboard.resume_cv', compact('personal_detail'));
+    }
+
 
     public function user_profile_index()
     {
@@ -82,9 +94,5 @@ class Dashboard extends Controller
         }
     }
 
-    // cv edit
-    public function cv_edit_index()
-    {
-        return view('dashboard.cv_edit');
-    }
+    
 }

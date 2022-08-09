@@ -85,7 +85,7 @@
                                 <img src="img/icons/d1.png" alt="">
                             </div>
                             <h3><a href="#">Easy Online Resume Builder</a></h3>
-                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi assumenda.</div>
+                            <div class="text">Build </div>
                             
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <div class="icon-img-box">
                                 <img src="img/icons/d2.png" alt="">
                             </div>
-                            <h3><a href="#">Step by Step Expert Tips</a></h3>
+                            <h3><a href="#">Apply for Job by just notification feature</a></h3>
                             <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit skaj gjska consectetur adipisicing elit.</div>
                             
                         </div>
@@ -104,7 +104,7 @@
                             <div class="icon-img-box">
                                 <img src="img/icons/d3.png" alt="">
                             </div>
-                            <h3><a href="#">Recruiter Approved Phrases</a></h3>
+                            <h3><a href="#">Match with complanies in Europian</a></h3>
                             <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium modi.</div>
                             
                         </div>
@@ -119,7 +119,7 @@
                         <h4>Why Choose Our Platform?</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at dictum risus, non suscipit arcu. Quisque aliquam posuere tortor, sit amet convallis nunc scelerisque in.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eius molestiae facere, natus reprehenderit eaque eum, autem ipsam. Magni, error. Tempora odit laborum iure inventore possimus laboriosam qui nam. Fugit!</p>
-                        <a class="btn dream-btn mt-30" href="templates.html">lets build your cv</a>
+                        <a class="btn dream-btn mt-30" href="{{route('register')}}">lets build your cv</a>
                     </div>
                 </div>
             </div>

@@ -12,10 +12,10 @@
                 <a class="nav-link {{ $current_file_name == 'dashboard' ? 'active' : '' }}" href="{{route('dashboard')}}">Dashboard</a>
              </li>
              <li class="nav-item">
-                <a class="nav-link {{ $current_file_name == 'user_profile' ? 'active' : '' }}" href="{{route('user_profile')}}">User Profile</a>
+                <a class="nav-link {{ $current_file_name == 'user-profile' ? 'active' : '' }}" href="{{route('user_profile')}}">User Profile</a>
              </li>
              <li class="nav-item">
-                <a class="nav-link" href="social-profiles.html">Create CV</a>
+                <a class="nav-link {{ $current_file_name == 'resume-cv' ? 'active' : '' }}" href="{{route('resume_cv')}}">Create CV</a>
              </li>
              <li class="nav-item">
                 <a class="nav-link" href="my-properties.html">Apply for Job</a>

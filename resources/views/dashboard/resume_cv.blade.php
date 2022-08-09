@@ -8,16 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Dashboard</title>
+    <title>Resume-CV</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+      <!-- Favicon -->
+      <link rel="icon" href="../img/core-img/favicon.ico">
 
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="css/responsive.css">
+      <!-- Core Stylesheet -->
+      <link rel="stylesheet" href="../css/style.css">
+  
+      <!-- Responsive Stylesheet -->
+      <link rel="stylesheet" href="../css/responsive.css">
 
 </head>
 
@@ -29,48 +29,7 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
-    {{-- <header class="header-area fadeInDown" data-wow-delay="0.2s">
-        <div class="classy-nav-container light breakpoint-off">
-            <div class="container">
-                <!-- Classy Menu -->
-                <nav class="classy-navbar light justify-content-between" id="dreamNav">
-
-                    <!-- Logo -->
-                    <a class="nav-brand light" href="#"><img src="img/core-img/logo.png" alt="logo"> CV Builder </a>
-
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler demo">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <!-- Menu -->
-                    <div class="classy-menu">
-
-                        <!-- close btn -->
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li><a href="index-3.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="templates.html">Templates</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
-                            </ul>
-
-                            <!-- Button -->
-                            <a href="#" class="btn login-btn ml-50">Log Out</a>
-                        </div>
-                        <!-- Nav End -->
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header> --}}
+   
     @include('layout.header')
     <!-- ##### Header Area End ##### -->
 
@@ -83,7 +42,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <nav aria-label="breadcrumb" class="breadcumb--con ">
-                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Dashboard</h2>
+                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">CV / RESUME</h2>
                         </nav>
                     </div>
                 </div>
@@ -101,20 +60,22 @@
                 @include('dashboard.layout.sidebar')
 
                 <div class="col-lg-8 col-md-8">
-                    <!-- Single Table -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="price_table_text">
-                                <h1>JOB</h1>
-                                <h5 class="gradient-text cyan">application</h5>
-                            </div>
-                            <div class="table_text_details">
-                                <h3>Job Application Status</h3>
-                                <p>Yet to activate</p>
-                                {{-- <a href="contact-us.html" class="button mt-s">Get Started</a> --}}
-                            </div>
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{session('error')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
+                    @endif
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{session('success')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <!-- Single Table -->
                     <div class="col-lg-12 col-md-12">
                         <div class="single_price_table_content wow fadeInUp" data-wow-delay="0.3s">
@@ -222,22 +183,18 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- ########## All JS ########## -->
-    <!-- jQuery js -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins.js"></script>
-    <!-- Parallax js -->
-    <script src="js/dzsparallaxer.js"></script>
-    <!-- Active js -->
-    <script src="js/script.js"></script>
+   <!-- jQuery js -->
+   <script src="../js/jquery.min.js"></script>
+   <!-- Popper js -->
+   <script src="../js/popper.min.js"></script>
+   <!-- Bootstrap js -->
+   <script src="../js/bootstrap.min.js"></script>
+   <!-- All Plugins js -->
+   <script src="../js/plugins.js"></script>
+   <!-- Parallax js -->
+   <script src="../js/dzsparallaxer.js"></script>
+   <!-- Active js -->
+   <script src="../js/script.js"></script>
 
 </body>
-
-
-
-<!-- Mirrored from geeko.netlify.app/pricing.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Jul 2022 19:23:00 GMT -->
 </html>

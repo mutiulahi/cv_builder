@@ -767,6 +767,7 @@ ol {
     margin-bottom: 10px;
     outline: none;
 }
+
 .control-form-me:focus{
     border: 1px solid #2a91ff;
     border-radius: 5px;
@@ -774,6 +775,12 @@ ol {
     width: 100%;
     margin-bottom: 10px;
     outline: none;
+}
+label {
+    font-size: 16px;
+    color: #0554d2;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 .form-me .label-me {
     font-size: 14px;
@@ -4844,7 +4851,7 @@ body.light-version {
 }
 
 .btn {
-    border: 2px solid #007bff
+    /* border: 2px solid #007bff */
 }
 
 label {
@@ -4918,9 +4925,9 @@ h2 {
 }
 
 .add-border {
-    margin: 30px auto;
+    /* margin: 10px; */
     width: 60%;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .add-border span {
@@ -4928,17 +4935,36 @@ h2 {
     width: 200px;
     background: #00B7C2;
     display: inline-block;
+    margin-left: 10px;
 }
 
 .add-border h2 {
     display: block;
-    font-size: 21px;
+    font-size: 20px;
     padding: 0px 11px;
     margin-top: 10px;
     position: relative;
-    top: 7px;
+    top: 15px;
 }
 
+.del-btn {
+    width: 40%;
+
+}
+
+.del-btn .btn-me {
+    margin-top: 24px;
+    margin-left: 90%;
+}
+
+@media screen and (max-width: 700px) {
+
+    .del-btn .btn-me {
+        margin-top: 24px;
+        margin-left: 70%;
+    }
+    
+}
 
 /*********/
 

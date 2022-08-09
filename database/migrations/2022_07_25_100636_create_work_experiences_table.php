@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('work_experiences', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('company')->nullable();
-            $table->string('position')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('work_nationality')->nullable();
-            $table->string('description')->nullable();
+            $table->string('exp_company')->nullable();
+            $table->string('exp_position')->nullable();
+            $table->string('exp_start_date')->nullable();
+            $table->string('exp_end_date')->nullable();
+            $table->string('exp_city')->nullable();
+            $table->string('exp_state')->nullable();
+            $table->string('exp_work_nationality')->nullable();
+            $table->string('exp_description')->nullable();
             $table->timestamps();
         });
     }

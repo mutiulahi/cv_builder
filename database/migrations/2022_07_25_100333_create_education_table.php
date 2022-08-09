@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('education', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('school')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('field_of_study')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('school_url')->nullable();
+            $table->string('edu_school')->nullable();
+            $table->string('edu_degree')->nullable();
+            $table->string('edu_field_of_study')->nullable();
+            $table->string('edu_start_date')->nullable();
+            $table->string('edu_end_date')->nullable();
+            $table->string('edu_address')->nullable();
+            $table->string('edu_city')->nullable();
+            $table->string('edu_state')->nullable();
+            $table->string('edu_zip')->nullable();
+            $table->string('edu_school_url')->nullable();
             $table->string('edu_nationality')->nullable();
             $table->timestamps();
         });
