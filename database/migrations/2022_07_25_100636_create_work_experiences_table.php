@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('exp_city')->nullable();
             $table->string('exp_state')->nullable();
             $table->string('exp_work_nationality')->nullable();
-            $table->string('exp_description')->nullable();
+            $table->text('exp_description')->nullable();
             $table->timestamps();
         });
     }

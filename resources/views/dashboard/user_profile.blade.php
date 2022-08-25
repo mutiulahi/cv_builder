@@ -30,7 +30,7 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    @include('layout.header')
+    @include('dashboard.layout.header')
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Welcome Area Start ##### -->

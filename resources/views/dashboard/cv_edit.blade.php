@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -13,13 +13,13 @@
     <title>Create CV</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../img/core-img/favicon.ico">
+    <link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
 
 </head>
 
@@ -54,7 +54,7 @@
                     </div>
                     <div class="container">
 
-                        <form method="post" action="{{route('create_cv')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('edit_cv')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="mt-150">
                                 <h2>Personal Info</h2>
@@ -76,16 +76,16 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Full Name:</label>
-                                                <input type="text" name="full_name" class="control-form-me" value="{{auth()->user()->name}}" readonly placeholder="enter your name">
+                                                <input type="text" name="full_name" class="control-form-me" value="{{auth()->user()->name}}" readonly >
                                             </div>
                                             
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Date of Birth:</label>
-                                                <input type="date" name="date_of_birth" class="control-form-me" placeholder="">
+                                                <input type="date" name="date_of_birth" class="control-form-me" value="{{$personal_detail->date_of_birth}}" placeholder="">
                                             </div>
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Your Address:</label>
-                                                <input type="text" name="address" class="control-form-me" placeholder="enter your address">
+                                                <input type="text" name="address" class="control-form-me" value="{{$personal_detail->address}}" placeholder="enter your address">
                                             </div>
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Your Email:</label>
@@ -93,25 +93,25 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">City:</label>
-                                                <input type="text" name="city" class="control-form-me" placeholder="enter your city">
+                                                <input type="text" name="city" value="{{$personal_detail->city}}" class="control-form-me" placeholder="enter your city">
                                             </div>
                                             
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">State:</label>
-                                                <input type="text" name="state" class="control-form-me" placeholder="enter your state">
+                                                <input type="text" name="state" value="{{$personal_detail->state}}" class="control-form-me" placeholder="enter your state">
                                             </div>
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Nationality:</label>
-                                                <input type="text" name="nationality" class="control-form-me" placeholder="enter your nationality">
+                                                <input type="text" name="nationality" value="{{$personal_detail->nationality}}" class="control-form-me" placeholder="enter your nationality">
                                             </div>
                                             
                                             <div class="col-lg-6">
                                                 <label style="margin-bottom: 7px;">Phone No:</label>
-                                                <input type="text" name="phone" class="control-form-me" placeholder="Ex: phone number">
+                                                <input type="text" name="phone" value="{{$personal_detail->phone}}" class="control-form-me" placeholder="Ex: phone number">
                                             </div>
                                             <div class="col-lg-12">
                                                 <label style="margin-bottom: 7px;">Your Bio Here</label>
-                                                <textarea name="bio" id="comments" rows="4" class="control-form-me" placeholder="About Me :"></textarea>
+                                                <textarea name="bio" id="comments" rows="4" value="{{$personal_detail->bio}}" class="control-form-me" placeholder="About Me :">{{$personal_detail->bio}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -120,57 +120,66 @@
 
                             <div class="form-group add-edu">
                                 <h2>Add Educations</h2>
+                                
                                 <div class="all-edus">
-                                    <div class="new-edu">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Field of study:</label>
-                                                <input type="text" name="school_study[]" class="control-form-me" placeholder="Ex: Computer Science">
+                                    {{-- if education is empty --}}
+                                    @if(count($educations) == 0)
+                                        <span id="show_edu" style="text-align: center;">no education detail available</span>
+                                    @else
+                                        @foreach ($educations as $education) 
+                                            <div class="new-edu">
+                                                <div class="row">
+                                                    <div class="add-border"><h2>New Education</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-edu"> <i class="fa fa-trash"></i> </div></div>
+                                                    <input type="hidden" name="edu_id[]" value="{{$education->id}}">
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">Field of study:</label>
+                                                        <input type="text" name="school_study[]" class="control-form-me" value="{{$education->edu_field_of_study}}" placeholder="Ex: Computer Science">
+                                                    </div>
+                                                    <div class="col-lg-6">   
+                                                        <label style="margin-bottom: 7px;">Degree:</label>
+                                                        <input type="text" name="school_degree[]" class="control-form-me" value="{{$education->edu_degree}}" placeholder="Ex: Bachelor\'s">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">School:</label>
+                                                        <input type="text" name="school[]" class="control-form-me" value="{{$education->edu_school}}" placeholder="Ex: al-albayt university">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">Address:</label>
+                                                        <input type="text" name="school_address[]" class="control-form-me" value="{{$education->edu_address}}" placeholder="Ex: no 2, albayt ">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">City:</label>
+                                                        <input type="text" name="school_city[]" placeholder="Ex: Iwo" value="{{$education->edu_city}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">State:</label>
+                                                        <input type="text" name="school_state[]" placeholder="Ex: Osun" value="{{$education->edu_state}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">School Url:</label>
+                                                        <input type="text" name="school_url[]" placeholder="Ex: www.europain.com" value="{{$education->edu_school_url}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">School Zip Code:</label>
+                                                        <input type="text" name="school_zipcode[]" placeholder="Ex: 121223" value="{{$education->edu_zip}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">From year:</label>
+                                                        <input type="date" name="edu_from_year[]" placeholder="Ex: 121223" value="{{$education->edu_start_date}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">To year (today's date =present):</label>
+                                                        <input type="date" name="edu_to_yeer[]" placeholder="Ex: 121223" value="{{$education->edu_end_date}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <label style="margin-bottom: 7px;">Nationality:</label>
+                                                        <input type="text" name="edu_nationality[]" class="control-form-me" value="{{$education->edu_nationality}}" placeholder="Nationality">
+                                                    </div>
+                                                </div>                                
                                             </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Degree:</label>
-                                                <input type="text" name="school_degree[]" class="control-form-me" placeholder="Ex: Bachelor's">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">School:</label>
-                                                <input type="text" name="school[]" class="control-form-me" placeholder="Ex: al-albayt university">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Address:</label>
-                                                <input type="text" name="school_address[]" class="control-form-me" placeholder="Ex: no 2, albayt ">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">City:</label>
-                                                <input type="text" name="school_city[]" placeholder="Ex: Iwo" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">State:</label>
-                                                <input type="text" name="school_state[]" placeholder="Ex: Osun" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">School Url:</label>
-                                                <input type="text" name="school_url[]" placeholder="Ex: www.europain.com" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">School Zip Code:</label>
-                                                <input type="text" name="school_zipcode[]" placeholder="Ex: 121223" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">From year:</label>
-                                                <input type="date" name="edu_from_year[]" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">To year (optional=present):</label>
-                                                <input type="date" name="edu_to_yeer[]" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <label style="margin-bottom: 7px;">Nationality:</label>
-                                                <input type="text" name="edu_nationality[]" class="control-form-me" placeholder="Nationality">
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
                                 </div>
-
                                 <div class="add-blk btn btn-info" id="add-edu"> 
                                     <i class="fa fa-plus"></i>
                                     <span>Add Education</span>
@@ -181,38 +190,46 @@
                             <div class="form-group add-exp mt-s">
                                 <h2>Add Experiences</h2>
                                 <div class="all-exps">
-                                    <div class="new-exp">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Title:</label>
-                                                <input type="text" name="exp_title[]" class="control-form-me" placeholder="Ex: Web Developer">
+                                    @if(count($experiences) == 0)
+                                        <span id="show_exp" style="text-align: center;">no experience details available</span>
+                                    @else
+                                        @foreach ($experiences as $experience)
+                                            <div class="new-exp">
+                                                <input type="hidden" name="exp_id[]" value="{{$experience->id}}">
+                                                <div class="row">
+                                                    <div class="add-border"><h2>New Experience</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-exp"> <i class="fa fa-trash"></i> </div></div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">Title:</label>
+                                                        <input type="text" name="exp_title[]" class="control-form-me" value="{{$experience->exp_position}}" placeholder="Ex: Web Developer">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">Company:</label>
+                                                        <input type="text" name="exp_company[]" class="control-form-me" value="{{$experience->exp_company}}" placeholder="Ex: ProgressSoft">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">City:</label>
+                                                        <input type="text" name="exp_city[]" class="control-form-me" value="{{$experience->exp_city}}" placeholder="Ex: Osogbo">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">Country:</label>
+                                                        <input type="text" name="exp_country[]" class="control-form-me" value="{{$experience->exp_work_nationality}}" placeholder="Ex: Nigeria">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">From year:</label>
+                                                        <input type="month" name="exp_from_year[]" value="{{$experience->exp_start_date}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label style="margin-bottom: 7px;">To year (optional=present):</label>
+                                                        <input type="month" name="exp_to_year[]" value="{{$experience->exp_end_date}}" class="control-form-me">
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <label style="margin-bottom: 7px;">Description (optional):</label>
+                                                        <textarea name="exp_description[]"  class="control-form-me">{{$experience->exp_description}}</textarea>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Company:</label>
-                                                <input type="text" name="exp_company[]" class="control-form-me" placeholder="Ex: ProgressSoft">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">City:</label>
-                                                <input type="text" name="exp_city[]" class="control-form-me" placeholder="Ex: Osogbo">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">Country:</label>
-                                                <input type="text" name="exp_country[]" class="control-form-me" placeholder="Ex: Nigeria">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">From year:</label>
-                                                <input type="month" name="exp_from_year[]" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label style="margin-bottom: 7px;">To year (optional=present):</label>
-                                                <input type="month" name="exp_to_year[]" class="control-form-me">
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <label style="margin-bottom: 7px;">Description (optional):</label>
-                                                <textarea name="exp_description[]" class="control-form-me"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="add-blk btn btn-info" id="add-exp">
                                     <i class="fa fa-plus"></i>
@@ -225,14 +242,24 @@
                             <div class="form-group add-skill mt-s">
                                 <h2>Add Skills</h2>
                                 <div class="block-container">
-                                    <div class="all-skills">
-                                        <div class="new-skills">
-                                            <label style="margin-bottom: 7px;">Skill</label>
-                                            <input type="text" name="skill_name[]" placeholder="skills" class="control-form-me">
+                                    @if (count($skills) == 0)
+                                        <span id="show_skill" style="text-align: center;">no skills details available</span>
+                                    @else
+                                       <div class="all-skills">
+                                            @foreach ($skills as $skill)
+                                                <div class="new-skills">
+                                                    <div class="row">
+                                                            <div class="add-border"><h2>New Skill</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-skill"> <i class="fa fa-trash"></i> </div></div>
+                                                            <div class="col-lg-12">
+                                                                <input type="hidden" name="skill_id[]" value="{{$skill->id}}">
+                                                                <label style="margin-bottom: 7px;">Skill</label>
+                                                                <input type="text" name="skill_name[]" placeholder="skills" value="{{$skill->skill}}" class="control-form-me">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                    </div>
-                                
-
+                                    @endif
                                     <div class="add-blk add-skills btn btn-info mt-50">
                                         <i class="fa fa-plus"></i>
                                         <span>Add Skill</span>
@@ -245,16 +272,27 @@
                             <div class="form-group add-social mt-s">
                                 <h2>Add social Links</h2>
                                 <div class="block-container">
+                                    @if (count($socials) == 0)
+                                        <span id="show_social" style="text-align: center;">no social links details available</span>
+                                    @else
                                     <div class="all-socials">
-                                        <div class="new-skills">
-                                            <label style="margin-bottom: 7px;">Social Name</label>
-                                            <input type="text" name="social_name[]" class="control-form-me">
-                                            <label style="margin-bottom: 7px;">Profile Link</label>
-                                            <input type="link" name="social_link[]" class="control-form-me">
-                                        </div>
+                                        @foreach ($socials as $social)
+                                            {{-- <div class="new-socials"> --}}
+                                                <div class="new-skills">
+                                                    <div class="row">
+                                                        <div class="add-border"><h2>New Social</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-social"> <i class="fa fa-trash"></i> </div></div>
+                                                        <div class="col-lg-12">
+                                                            <input type="hidden" name="social_id[]" value="{{$social->id}}">
+                                                            <label style="margin-bottom: 7px;">Social Name</label>
+                                                            <input type="text" name="social_name[]" placeholder="social link" value="{{$social->social_name}}" class="control-form-me">
+                                                            <label style="margin-bottom: 7px;">Profile Link</label>
+                                                            <input type="link" name="social_link[]" value="{{$social->social_link}}" class="control-form-me"> 
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                        @endforeach
                                     </div>
-                                    
-                                    
+                                    @endif
                                     <div class="add-blk add-socials btn btn-info mt-50">
                                         <i class="fa fa-plus"></i>
                                         <span>Add Social</span>
@@ -278,18 +316,18 @@
 
     <!-- ########## All JS ########## -->
     <!-- jQuery js -->
-    <script src="../js/jquery.min.js"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
+    <script src="{{asset('js/popper.min.js')}}"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- All Plugins js -->
-    <script src="../js/plugins.js"></script>
+    <script src="{{asset('js/plugins.js')}}"></script>
     <!-- Parallax js -->
-    <script src="../js/dzsparallaxer.js"></script>
+    <script src="{{asset('js/dzsparallaxer.js')}}"></script>
     <!-- Active js -->
-    <script src="../js/form-script.js"></script>
-    <script src="../js/script.js"></script>
+    <script src="{{asset('js/form-script.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
 
 </body>
 </html>

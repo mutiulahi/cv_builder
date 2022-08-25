@@ -56,11 +56,13 @@ $(document).ready(function(){
     // Add education block
     
     $('#add-edu').on('click',function(){
-        var edu = '<div class="new-edu">'+
+        // document.getElementById('show_edu').style.display = 'none';
+       var edu = '<div class="new-edu">'+
                     // '<div class="add-border"><h2>New Education</h2><span></span></div> <div style="float:right; margin-bottom:10px;"> <div class="btn btn-danger" id="remove-edu"> <i class="fa fa-trash"></i> </div></div>'+
                     
                     '<div class="row">'+
                     '<div class="add-border"><h2>New Education</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-edu"> <i class="fa fa-trash"></i> </div></div>'+
+                    '<input type="hidden" name="edu_id[]" value="">'+
                     '<div class="col-lg-6">'+
                             '<label style="margin-bottom: 7px;">Field of study:</label>'+
                             '<input type="text" name="school_study[]" class="control-form-me" placeholder="Ex: Computer Science">'+
@@ -112,14 +114,17 @@ $(document).ready(function(){
     // Remove education block
     $('.all-edus').on('click','#remove-edu',function(){
         $(this).parent().parent().fadeOut(500).remove();
+        // console.log(Window.edu.length);
     });
     
     // Add Experience block
     
     $('#add-exp').on('click',function(){
+        // document.getElementById('show_exp').style.display = 'none';
         var exp = '<div class="new-edu">'+
             '<div class="row">'+
             '<div class="add-border"><h2>New Experience</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-exp"> <i class="fa fa-trash"></i> </div></div>'+
+            '<input type="hidden" name="exp_id[]" value="">'+
                 '<div class="col-lg-6">'+
                     '<label style="margin-bottom: 7px;">Title:</label>'+
                     '<input type="text" name="exp_title[]" class="control-form-me" placeholder="Ex: Computer Science">'+
@@ -167,9 +172,9 @@ $(document).ready(function(){
                                             '<div class="col-lg-12">'+
                                                 '<label style="margin-bottom: 8px;">Skill</label>'+
                                                 '<input type="text" name="skill[]" class="control-form-me">'+
-                                                '</div>'+
                                             '</div>'+
-                                        '</div>');
+                                        '</div>'+
+                                    '</div>');
         
     });
 

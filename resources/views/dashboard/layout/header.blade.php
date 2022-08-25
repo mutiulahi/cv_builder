@@ -1,11 +1,11 @@
 <header class="header-area">
-    <div class="classy-nav-container primary breakpoint-off">
+    <div class="classy-nav-container light breakpoint-off">
         <div class="container">
             <!-- Classy Menu -->
-            <nav class="classy-navbar primary justify-content-between" id="dreamNav">
+            <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                 <!-- Logo -->
-                <a class="nav-brand primary" href="index-2.html"><img src="{{asset('img/core-img/logo.png')}}" alt="logo"> CV Builder.</a>
+                <a class="nav-brand light" href="{{route('home')}}"><img src="{{asset('img/core-img/logo.png')}}" alt="logo"> CV Builder.</a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -36,7 +36,6 @@
 
                         <!-- Button -->
                         @auth
-                            <a href="{{route('login')}}" class="btn login-btn mr-im">Dashboard </a>
                             <a href="{{route('login')}}" class="btn login-btn mr-im">Log out </a>
                         @endauth
                        @guest

@@ -30,7 +30,7 @@
     </div>
 
    
-    @include('layout.header')
+    @include('dashboard.layout.header')
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Welcome Area Start ##### -->
@@ -88,7 +88,7 @@
                                 {{-- check if user has data in personal detail --}}
                                 @if(!empty($personal_detail))
                                     {{-- // give the user the option to edit the data --}}
-                                    <a href="{{ route('create_cv', auth()->user()->unique_id) }}" class="button mt-s">Edit</a>
+                                    <a href="{{ route('edit_cv')}}" class="button mt-s">Edit</a>
                                 @else
                                     <p>Please create your Resume/CV</p>
                                     <a href="{{ route('create_cv') }}" class="button mt-s">Create</a>

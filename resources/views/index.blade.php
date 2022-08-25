@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
-
-<!-- Mirrored from geeko.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Jul 2022 19:21:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -273,7 +270,7 @@
         
     </section>
 
-    <section class="demo section-padding-100 ring-bg">
+    {{-- <section class="demo section-padding-100 ring-bg">
         <div class="container">
             <div class="section-heading text-center">
                 <div class="dream-dots justify-content-center">
@@ -317,7 +314,7 @@
                 
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- ##### Our features Area Start ##### -->
     <section class="our_services_area section-padding-100-70" id="services">

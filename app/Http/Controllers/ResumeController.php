@@ -13,15 +13,16 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ResumeController extends Controller
 {
-    // cv create
+    // cv create index
     public function cv_create_index()
     {
-        return view('dashboard.cv_edit');
+        return view('dashboard.cv_create');
     }
 
     // cv create action (save)
     public function cv_create_action(Request $detail)
     {
+
         $unique_id = auth()->user()->unique_id;
         $personal_detail = new Personal_detail();
         $personal_detail->user_id = $unique_id;
@@ -84,6 +85,73 @@ class ResumeController extends Controller
         return redirect()->route('resume_cv')->with('success', 'Resume Created Successfully');
     }
 
+    // cv edit index
+    public function cv_edit_index()
+    {
+        $unique_id = auth()->user()->unique_id;
+        $personal_detail = Personal_detail::where('user_id', $unique_id)->first();
+        $educations = Education::where('user_id', $unique_id)->get();
+        $experiences = Work_experience::where('user_id', $unique_id)->get();
+        $skills = Skill::where('user_id', $unique_id)->get();
+        $socials = Social::where('user_id', $unique_id)->get();
+
+        return view('dashboard.cv_edit', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials'));
+    }
+
+    public function cv_edit_action(Request $detail)
+    {
+        $unique_id = auth()->user()->unique_id;
+    
+        // update personal detail
+        $personal_detail = Personal_detail::where('user_id', $unique_id)->first();
+        $personal_detail->phone = $detail->phone;
+        $personal_detail->address = $detail->address;
+        $personal_detail->city = $detail->city;
+        $personal_detail->state = $detail->state;
+        $personal_detail->zip = $detail->zip;
+        $personal_detail->nationality = $detail->nationality;
+        $personal_detail->bio = $detail->bio;
+        $personal_detail->date_of_birth = $detail->date_of_birth;
+        $personal_detail->save();
+
+        // update education details
+        for ($edu_i_update=0; $edu_i_update < count($detail->school); $edu_i_update++) {
+            $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->get();
+            if ($education->count() > 0) {
+                $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->get();
+                $education->edu_school = $detail->school[$edu_i_update];
+                $education->edu_degree = $detail->school_degree[$edu_i_update];
+                $education->edu_address = $detail->school_address[$edu_i_update];
+                $education->edu_field_of_study = $detail->school_study[$edu_i_update];
+                $education->edu_city = $detail->school_city[$edu_i_update];
+                $education->edu_state = $detail->school_state[$edu_i_update];
+                $education->edu_zip = $detail->school_zipcode[$edu_i_update];
+                $education->edu_school_url = $detail->school_url[$edu_i_update];
+                $education->edu_start_date = $detail->edu_from_year[$edu_i_update];
+                $education->edu_end_date = $detail->edu_to_yeer[$edu_i_update];
+                $education->edu_nationality = $detail->edu_nationality[$edu_i_update];
+                $education->save();
+            } else {
+                $education->edu_school = $detail->school[$edu_i_update];
+                $education->edu_degree = $detail->school_degree[$edu_i_update];
+                $education->edu_address = $detail->school_address[$edu_i_update];
+                $education->edu_field_of_study = $detail->school_study[$edu_i_update];
+                $education->edu_city = $detail->school_city[$edu_i_update];
+                $education->edu_state = $detail->school_state[$edu_i_update];
+                $education->edu_zip = $detail->school_zipcode[$edu_i_update];
+                $education->edu_school_url = $detail->school_url[$edu_i_update];
+                $education->edu_start_date = $detail->edu_from_year[$edu_i_update];
+                $education->edu_end_date = $detail->edu_to_yeer[$edu_i_update];
+                $education->edu_nationality = $detail->edu_nationality[$edu_i_update];
+                $education->save();
+            }
+            
+            
+        }
+    }
+
+   
+
     // cv template 1
     public function cv_template_1()
     {
@@ -101,5 +169,6 @@ class ResumeController extends Controller
         
         return $pdf->stream();
     }
+
     
 }

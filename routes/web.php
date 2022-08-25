@@ -46,8 +46,8 @@ Route::get('/dashboard/create-cv', [ResumeController::class, 'cv_create_index'])
 Route::post('/dashboard/create-cv', [ResumeController::class, 'cv_create_action'])->middleware('auth');
 
 // cv edit
-Route::get('/dashboard/edit-cv/{id}', [ResumeController::class, 'cv_edit_index'])->name('edit_cv')->middleware('auth');
-Route::post('/dashboard/edit-cv/{id}', [ResumeController::class, 'cv_edit_action'])->middleware('auth');
+Route::get('/dashboard/edit-cv', [ResumeController::class, 'cv_edit_index'])->name('edit_cv')->middleware('auth');
+Route::post('/dashboard/edit-cv', [ResumeController::class, 'cv_edit_action'])->middleware('auth');
 
 // cv template
 Route::get('/dashboard/cv-template', [ResumeController::class, 'cv_template_1'])->name('cv_template')->middleware('auth');
