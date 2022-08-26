@@ -97,7 +97,7 @@ class ResumeController extends Controller
 
         return view('dashboard.cv_edit', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials'));
     }
-
+    // cv edit action (save)
     public function cv_edit_action(Request $detail)
     {
         $unique_id = auth()->user()->unique_id;
@@ -117,8 +117,10 @@ class ResumeController extends Controller
         // update education details
         for ($edu_i_update=0; $edu_i_update < count($detail->school); $edu_i_update++) {
             $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->get();
+            // dd($education);
             if ($education->count() > 0) {
-                $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->get();
+                // update education details 
+                $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->first();
                 $education->edu_school = $detail->school[$edu_i_update];
                 $education->edu_degree = $detail->school_degree[$edu_i_update];
                 $education->edu_address = $detail->school_address[$edu_i_update];
@@ -132,6 +134,8 @@ class ResumeController extends Controller
                 $education->edu_nationality = $detail->edu_nationality[$edu_i_update];
                 $education->save();
             } else {
+                $education = new Education();
+                $education->user_id = $unique_id;
                 $education->edu_school = $detail->school[$edu_i_update];
                 $education->edu_degree = $detail->school_degree[$edu_i_update];
                 $education->edu_address = $detail->school_address[$edu_i_update];
@@ -145,8 +149,73 @@ class ResumeController extends Controller
                 $education->edu_nationality = $detail->edu_nationality[$edu_i_update];
                 $education->save();
             }
-            
-            
+        }
+
+        // update Experiences
+
+        for ($exp_i_update=0; $exp_i_update < count($detail->exp_title); $exp_i_update++) {
+            $experience = Work_experience::where('user_id', $unique_id)->where('id', $detail->exp_id[$exp_i_update])->get();
+            if ($experience->count() > 0) {
+                $experience = Work_experience::where('user_id', $unique_id)->where('id', $detail->exp_id[$exp_i_update])->first();
+                $experience->exp_position = $detail->exp_title[$exp_i_update];
+                $experience->exp_company = $detail->exp_company[$exp_i_update];
+                $experience->exp_city = $detail->exp_city[$exp_i_update];
+                $experience->exp_work_nationality = $detail->exp_country[$exp_i_update];
+                $experience->exp_start_date = $detail->exp_from_year[$exp_i_update];
+                $experience->exp_end_date = $detail->exp_to_year[$exp_i_update];
+                $experience->exp_description = $detail->exp_description[$exp_i_update];
+                $experience->save();
+            }else{
+                $experience = new Work_experience();
+                $experience->user_id = $unique_id;
+                $experience->exp_position = $detail->exp_title[$exp_i_update];
+                $experience->exp_company = $detail->exp_company[$exp_i_update];
+                $experience->exp_city = $detail->exp_city[$exp_i_update];
+                $experience->exp_work_nationality = $detail->exp_country[$exp_i_update];
+                $experience->exp_start_date = $detail->exp_from_year[$exp_i_update];
+                $experience->exp_end_date = $detail->exp_to_year[$exp_i_update];
+                $experience->exp_description = $detail->exp_description[$exp_i_update];
+                $experience->save();
+            }
+        }
+
+        // update skills
+        for ($skill_i_update=0; $skill_i_update < count($detail->skill_name); $skill_i_update++) {
+            $skill = Skill::where('user_id', $unique_id)->where('id', $detail->skill_id[$skill_i_update])->get();
+            if ($skill->count() > 0) {
+                $skill = Skill::where('user_id', $unique_id)->where('id', $detail->skill_id[$skill_i_update])->first();
+                $skill->skill = $detail->skill_name[$skill_i_update];
+                $skill->save();
+            }else{
+                $skill = new Skill();
+                $skill->user_id = $unique_id;
+                $skill->skill = $detail->skill_name[$skill_i_update];
+                $skill->save();
+            }
+        }
+
+        // update languages
+        for ($social_i_update=0; $social_i_update < count($detail->social_name) ; $social_i_update++) { 
+            // if id is not empty then update else create new
+            if (!empty($detail->social_id[$social_i_update])) {
+              $social_id =  $detail->social_id[$social_i_update];
+            }else {
+                $social_id = '';
+            }
+                
+            $social = Social::where('user_id', $unique_id)->where('id', $social_id)->get();
+            if ($social->count() > 0) {
+                $social = Social::where('user_id', $unique_id)->where('id', $social_id)->first();
+                $social->social_name = $detail->social_name[$social_i_update];
+                $social->social_link = $detail->social_link[$social_i_update];
+                $social->save();
+            } else {
+            $social = new Social();
+            $social->user_id = $unique_id;
+            $social->social_name = $detail->social_name[$social_i_update];
+            $social->social_link = $detail->social_link[$social_i_update];
+            $social->save();
+            }
         }
     }
 
