@@ -40,6 +40,9 @@ Route::get('/dashboard/user-profile', [Dashboard::class, 'user_profile_index'])-
 Route::post('/dashboard/user-profile', [Dashboard::class, 'update_user_profile'])->middleware('auth');
 Route::post('/dashboard/user-password', [Dashboard::class, 'update_user_profile_password'])->name('user_password')->middleware('auth');
 Route::get('/dashboard/resume-cv', [Dashboard::class, 'resume_cv'])->name('resume_cv')->middleware('auth');
+// job application 
+Route::get('/dashboard/job-application', [Dashboard::class, 'job_application_index'])->name('job_application')->middleware('auth');
+Route::post('/dashboard/job-application', [Dashboard::class, 'job_application_store'])->middleware('auth');
 
 // cv create
 Route::get('/dashboard/create-cv', [ResumeController::class, 'cv_create_index'])->name('create_cv')->middleware('auth');
@@ -48,6 +51,10 @@ Route::post('/dashboard/create-cv', [ResumeController::class, 'cv_create_action'
 // cv edit
 Route::get('/dashboard/edit-cv', [ResumeController::class, 'cv_edit_index'])->name('edit_cv')->middleware('auth');
 Route::post('/dashboard/edit-cv', [ResumeController::class, 'cv_edit_action'])->middleware('auth');
+
+Route::get('/dashboard/delete-cv/{id}/{modal}', [ResumeController::class, 'cv_delete_index'])->name('delete_cv')->middleware('auth');
+
+
 
 // cv template
 Route::get('/dashboard/cv-template', [ResumeController::class, 'cv_template_1'])->name('cv_template')->middleware('auth');

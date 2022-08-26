@@ -751,7 +751,7 @@ ol {
     /* background-color: #00B7C2; */
 
 }
-.form-me input{
+.form-me input, select {
     border: 1px solid #2a91ff;
     border-radius: 5px;
     padding: 10px;

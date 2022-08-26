@@ -17,14 +17,14 @@
              <li class="nav-item">
                 <a class="nav-link {{ $current_file_name == 'resume-cv' ? 'active' : '' }}" href="{{route('resume_cv')}}">Create CV</a>
              </li>
-             <li class="nav-item">
-                <a class="nav-link" href="my-properties.html">Apply for Job</a>
+             <li class="nav-item"> {{-- job_application --}}
+                  <a class="nav-link {{ $current_file_name == 'job-application' ? 'active' : '' }}" href="{{route('job_application')}}">Apply for Job</a>
              </li>
              <li class="nav-item">
-                <a class="nav-link" href="favorite-properties.html">Mentoring programme</a>
+                <a class="nav-link" href="">Mentoring programme <code>comnig soon</code></a>
              </li>
              <li class="nav-item">
-                <a class="nav-link" href="add-property.html">Scholarship</a>
+                <a class="nav-link" href="">Scholarship <code>comnig soon</code></a>
              </li>
                <li class="nav-item">
                   <a class="nav-link" href="/logout">Log Out</a>

@@ -116,11 +116,18 @@ class ResumeController extends Controller
 
         // update education details
         for ($edu_i_update=0; $edu_i_update < count($detail->school); $edu_i_update++) {
-            $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->get();
+
+            if (!empty($detail->edu_id[$edu_i_update])) {
+                $edu_id =  $detail->edu_id[$edu_i_update];
+              }else {
+                  $edu_id = '';
+              }
+
+            $education = Education::where('user_id', $unique_id)->where('id', $edu_id)->get();
             // dd($education);
             if ($education->count() > 0) {
                 // update education details 
-                $education = Education::where('user_id', $unique_id)->where('id', $detail->edu_id[$edu_i_update])->first();
+                $education = Education::where('user_id', $unique_id)->where('id', $edu_id)->first();
                 $education->edu_school = $detail->school[$edu_i_update];
                 $education->edu_degree = $detail->school_degree[$edu_i_update];
                 $education->edu_address = $detail->school_address[$edu_i_update];
@@ -154,9 +161,15 @@ class ResumeController extends Controller
         // update Experiences
 
         for ($exp_i_update=0; $exp_i_update < count($detail->exp_title); $exp_i_update++) {
-            $experience = Work_experience::where('user_id', $unique_id)->where('id', $detail->exp_id[$exp_i_update])->get();
+            
+             if (!empty($detail->exp_id[$exp_i_update])) {
+                $exp_id =  $detail->exp_id[$exp_i_update];
+              }else {
+                  $exp_id = '';
+              }
+              $experience = Work_experience::where('user_id', $unique_id)->where('id', $exp_id)->get();
             if ($experience->count() > 0) {
-                $experience = Work_experience::where('user_id', $unique_id)->where('id', $detail->exp_id[$exp_i_update])->first();
+                $experience = Work_experience::where('user_id', $unique_id)->where('id', $exp_id)->first();
                 $experience->exp_position = $detail->exp_title[$exp_i_update];
                 $experience->exp_company = $detail->exp_company[$exp_i_update];
                 $experience->exp_city = $detail->exp_city[$exp_i_update];
@@ -181,9 +194,14 @@ class ResumeController extends Controller
 
         // update skills
         for ($skill_i_update=0; $skill_i_update < count($detail->skill_name); $skill_i_update++) {
-            $skill = Skill::where('user_id', $unique_id)->where('id', $detail->skill_id[$skill_i_update])->get();
+            if (!empty($detail->skill_id[$skill_i_update])) {
+                $skill_id =  $detail->skill_id[$skill_i_update];
+              }else {
+                  $skill_id = '';
+              }
+            $skill = Skill::where('user_id', $unique_id)->where('id', $skill_id)->get();
             if ($skill->count() > 0) {
-                $skill = Skill::where('user_id', $unique_id)->where('id', $detail->skill_id[$skill_i_update])->first();
+                $skill = Skill::where('user_id', $unique_id)->where('id', $skill_id)->first();
                 $skill->skill = $detail->skill_name[$skill_i_update];
                 $skill->save();
             }else{
@@ -217,6 +235,26 @@ class ResumeController extends Controller
             $social->save();
             }
         }
+    }
+
+    // delete cv from database
+    public function cv_delete_index($item_id, $model)
+    {
+        $unique_id =  auth()->user()->unique_id;
+        if($model == 'Education'){
+            $education = Education::where('user_id', $unique_id)->where('id', $item_id)->delete();
+            return redirect()->back()->with('success', 'Education deleted successfully');
+        }elseif($model == 'Work_experience'){
+            $experience = Work_experience::where('user_id', $unique_id)->where('id', $item_id)->delete();
+            return redirect()->back()->with('success', 'Experience deleted successfully');
+        }elseif($model == 'Skill'){
+            $skill = Skill::where('user_id', $unique_id)->where('id', $item_id)->delete();
+            return redirect()->back()->with('success', 'Skill deleted successfully');
+        }elseif($model == 'Social'){
+            $social = Social::where('user_id', $unique_id)->where('id', $item_id)->delete();
+            return redirect()->back()->with('success', 'Social deleted successfully');
+        }
+
     }
 
    

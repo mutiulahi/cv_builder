@@ -129,7 +129,7 @@
                                         @foreach ($educations as $education) 
                                             <div class="new-edu">
                                                 <div class="row">
-                                                    <div class="add-border"><h2>New Education</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-edu"> <i class="fa fa-trash"></i> </div></div>
+                                                    <div class="add-border"><h2>New Education</h2><span></span></div> <div class="del-btn"> <a href="{{ url('dashboard/delete-cv/'.$education->id . '/Education')}}" class="btn btn-sm btn-danger btn-me" id="remove-edu"> <i class="fa fa-trash"> </i> </a></div>
                                                     <input type="hidden" name="edu_id[]" value="{{$education->id}}">
                                                     <div class="col-lg-6">
                                                         <label style="margin-bottom: 7px;">Field of study:</label>
@@ -197,7 +197,7 @@
                                             <div class="new-exp">
                                                 <input type="hidden" name="exp_id[]" value="{{$experience->id}}">
                                                 <div class="row">
-                                                    <div class="add-border"><h2>New Experience</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-exp"> <i class="fa fa-trash"></i> </div></div>
+                                                    <div class="add-border"><h2>New Experience</h2><span></span></div> <div class="del-btn"> <a href="{{ url('dashboard/delete-cv/'.$experience->id . '/Work_experience')}}" class="btn btn-sm btn-danger btn-me" id="remove-exp"> <i class="fa fa-trash"></i> </a></div>
                                                     <div class="col-lg-6">
                                                         <label style="margin-bottom: 7px;">Title:</label>
                                                         <input type="text" name="exp_title[]" class="control-form-me" value="{{$experience->exp_position}}" placeholder="Ex: Web Developer">
@@ -249,7 +249,7 @@
                                             @foreach ($skills as $skill)
                                                 <div class="new-skills">
                                                     <div class="row">
-                                                            <div class="add-border"><h2>New Skill</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-skill"> <i class="fa fa-trash"></i> </div></div>
+                                                            <div class="add-border"><h2>New Skill</h2><span></span></div> <div class="del-btn"> <a href="{{ url('dashboard/delete-cv/'.$skill->id . '/Skill')}}" class="btn btn-sm btn-danger btn-me" id="remove-skill"> <i class="fa fa-trash"></i> </a></div>
                                                             <div class="col-lg-12">
                                                                 <input type="hidden" name="skill_id[]" value="{{$skill->id}}">
                                                                 <label style="margin-bottom: 7px;">Skill</label>
@@ -280,7 +280,7 @@
                                             {{-- <div class="new-socials"> --}}
                                                 <div class="new-skills">
                                                     <div class="row">
-                                                        <div class="add-border"><h2>New Social</h2><span></span></div> <div class="del-btn"> <div class="btn btn-sm btn-danger btn-me" id="remove-social"> <i class="fa fa-trash"></i> </div></div>
+                                                        <div class="add-border"><h2>New Social</h2><span></span></div> <div class="del-btn"> <a href="{{ url('dashboard/delete-cv/'.$social->id . '/Social')}}" class="btn btn-sm btn-danger btn-me" id="remove-social"> <i class="fa fa-trash"></i> </a></div>
                                                         <div class="col-lg-12">
                                                             <input type="hidden" name="social_id[]" value="{{$social->id}}">
                                                             <label style="margin-bottom: 7px;">Social Name</label>
