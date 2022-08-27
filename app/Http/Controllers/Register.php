@@ -37,7 +37,7 @@ class Register extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         if ($user) {
-            Mail::to($user->email)->send(new confirm_Mail($user));
+            // Mail::to($user->email)->send(new confirm_Mail($user));
             return redirect()->route('login')->with('success', 'Please check your email to confirm your account.');
         } else {
             return redirect()->route('register')->with('error', 'Something went wrong.');
