@@ -42,14 +42,15 @@ class Dashboard extends Controller
         // dd($request->all());
         $this->validate($request, [
             'full_name' => 'required|string|max:255',
-            'profile_pic' => 'image|mimes:jpeg,png,jpg',
+            'profile_pic' => 'image|mimes:jpeg,jpg',
         ]);
 
         $unique_id = auth()->user()->unique_id;
         // upload profile picture
         if($request->hasFile('profile_pic')){
-            $filename = $unique_id.'_'.$request->profile_pic->getClientOriginalName();
-            $request->profile_pic->storeAs('profile_pic',$filename,'public');
+            $filename = $unique_id.'-'.$request->profile_pic->getClientOriginalName();
+            $request->profile_pic->move('profile_pics/', $filename);
+            // $request->profile_pic->storeAs('profile_pic',$filename,'public');
            
         // update user profile
         $user = User::where('unique_id', $unique_id)->first();

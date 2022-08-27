@@ -85,9 +85,14 @@
                                 <div class="row">
                                     <div class="col-md-4" >
                                         <p>Profile Picture</p>
-                                        <img src="{{asset('/storage/profile_pic/'.Auth::user()->profile_pic)}}" alt="sds" srcset="" height="100px" width="100px">
+                                        <img src="{{asset('profile_pics/'.Auth::user()->profile_pic)}}" alt="sds" srcset="" height="100px" width="100px">
                                     </div>
                                     <div class="col-md-8 form-me">
+                                        @if ($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                                <code style="font-size: 12px;">{{$error}}</code>
+                                            @endforeach
+                                        @endif
                                         <form action="{{route('user_profile')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <label class="label-me" for="">Full Name</label>

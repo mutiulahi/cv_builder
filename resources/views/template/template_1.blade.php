@@ -48,7 +48,7 @@
           border-radius: 100%;
           width: 140px;
           height: 140px;
-          margin-top: 25px;
+          margin-top: 0px;
           margin-left: 3%;
         }
         .details {
@@ -86,11 +86,11 @@
 <body class="login-page" style="background: white">
 
         <div class="head">
-            <img src="{{asset('img/bg-img/bread.jpg')}}" alt="" height="70px">
+            <img src="{{$pic_logo}}" alt="" height="70px">
         </div>
         <div class="head_detail">
             <div class="profile_pic">
-                <img src="https://res.cloudinary.com/dqzxpn5db/image/upload/v1537151698/website/logo.png" alt="">
+                <img src="{{$pic_profile}}" alt="">
             </div>
             <div class="details">
                 <h3 class="name">{{auth()->user()->name}}</h3>

@@ -9,7 +9,11 @@ use App\Models\Education;
 use App\Models\Work_experience;
 use App\Models\Skill;
 use App\Models\Social;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
+// use PDF;
+use Illuminate\Support\Facades\Storage;
+
 
 class ResumeController extends Controller
 {
@@ -94,6 +98,8 @@ class ResumeController extends Controller
         $experiences = Work_experience::where('user_id', $unique_id)->get();
         $skills = Skill::where('user_id', $unique_id)->get();
         $socials = Social::where('user_id', $unique_id)->get();
+
+        
 
         return view('dashboard.cv_edit', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials'));
     }
@@ -268,11 +274,21 @@ class ResumeController extends Controller
         $experiences = Work_experience::where('user_id', $unique_id)->get();
         $skills = Skill::where('user_id', $unique_id)->get();
         $socials = Social::where('user_id', $unique_id)->get();
-        // return view('template.template_1', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials'));
-        
-        $pdf = Pdf::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true, 'image'=> true]);
-        
-        $pdf = Pdf::loadView('template.template_1', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials'))->setOptions(['defaultFont' => 'palatino']);
+
+        $logo = base_path('public/img/bg-img/bread.jpg');
+        $type = pathinfo($logo, PATHINFO_EXTENSION);
+        $data = file_get_contents($logo);
+        $pic_logo = 'data:image/' . $type . ';base64,' . base64_encode($data); 
+
+       
+        $profile = base_path('public/profile_pics/'.auth()->user()->profile_pic);
+        $type_profile = pathinfo($profile, PATHINFO_EXTENSION);
+        $data_profile = file_get_contents($profile);
+        $pic_profile = 'data:image/' . $type_profile . ';base64,' . base64_encode($data_profile); 
+
+
+        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);        
+        $pdf->loadView('template.template_1', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials', 'pic_logo', 'pic_profile'))->setOptions(['defaultFont' => 'palatino']);
         
         return $pdf->stream();
     }
