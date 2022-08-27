@@ -38,7 +38,8 @@ class Register extends Controller
         $user->save();
         if ($user) {
             // Mail::to($user->email)->send(new confirm_Mail($user));
-            return redirect()->route('login')->with('success', 'Please check your email to confirm your account.');
+            // return redirect()->route('login')->with('success', 'Please check your email to confirm your account.');
+            return redirect()->route('login')->with('success', 'Account created successfully');
         } else {
             return redirect()->route('register')->with('error', 'Something went wrong.');
         }
