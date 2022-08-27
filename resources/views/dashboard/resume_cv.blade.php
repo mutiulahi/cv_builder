@@ -89,6 +89,7 @@
                                 @if(!empty($personal_detail))
                                     {{-- // give the user the option to edit the data --}}
                                     <a href="{{ route('edit_cv')}}" class="button mt-s">Edit</a>
+                                    <a href="{{ route('cv_template')}}" class="button mt-s">Download CV</a>
                                 @else
                                     <p>Please create your Resume/CV</p>
                                     <a href="{{ route('create_cv') }}" class="button mt-s">Create</a>

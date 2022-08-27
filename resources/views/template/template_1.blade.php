@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
 
-    <title>Invoice</title>
+    <title>{{auth()->user()->name}} cv</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,7 +28,7 @@
         }
         .head{
           height: 70px;
-          background-color: #F5F5F5;
+          background-color: #ffffff;
           width: 100%;
         }
         .head img{
