@@ -11,7 +11,8 @@ use App\Models\Skill;
 use App\Models\Social;
 // use Barryvdh\DomPDF\Facade\PDF;
 // use Barryvdh\DomPDF\Facade as PDF;
-use PDF;
+// use PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\Storage;
 
 
