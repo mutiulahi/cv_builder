@@ -36,7 +36,7 @@
 
                         <!-- Button -->
                         @auth
-                            <a href="{{route('login')}}" class="btn login-btn mr-im">Log out </a>
+                            <a href="{{route('logout')}}" class="btn login-btn mr-im">Log out </a>
                         @endauth
                        @guest
                             <a href="{{route('login')}}" class="btn login-btn mr-im">Log in </a>

@@ -32,7 +32,7 @@ Route::post('/login', [Login::class, 'login_action']);
 Route::get('/logout', function () {
     Auth::logout();
     return redirect()->route('login');
-});
+})->name('logout');
 
 // Dashboard
 Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard')->middleware('auth');

@@ -280,8 +280,12 @@ class ResumeController extends Controller
         $data = file_get_contents($logo);
         $pic_logo = 'data:image/' . $type . ';base64,' . base64_encode($data); 
 
-       
-        $profile = base_path('public/profile_pics/'.auth()->user()->profile_pic);
+        if(auth()->user()->profile_pic == null){
+            $profile_pic_image = '1.jpg';
+        }else{
+            $profile_pic_image = auth()->user()->profile_pic;
+        }
+        $profile = base_path('public/profile_pics/'.$profile_pic_image);
         $type_profile = pathinfo($profile, PATHINFO_EXTENSION);
         $data_profile = file_get_contents($profile);
         $pic_profile = 'data:image/' . $type_profile . ';base64,' . base64_encode($data_profile); 
