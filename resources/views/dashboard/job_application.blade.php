@@ -108,39 +108,75 @@
                                                 <code style="font-size: 12px;">{{$error}}</code><br>
                                             @endforeach
                                         @endif
-                                        @foreach ($job_applications as $job_applications) 
-                                        <form action="{{route('job_application')}}" method="post">
-                                            @csrf
-                                            <label class="label-me" for="">What is your specilization</label>
-                                            <input type="text" name="job_title" value="{{$job_applications->job_title}}" placeholder="Backend developer">
-                                            <label class="label-me" for="">What is your job location preference</label>
-                                            <select name="location" id="">
-                                                <option value="">select your location preference</option>
-                                                <option value="on-site" @if ($job_applications->location == 'on-site') selected @endif>On-site</option>
-                                                <option value="remote" @if ($job_applications->location == 'remote') selected @endif>Remote</option>
-                                                <option value="hybrid" @if ($job_applications->location == 'hybrid') selected @endif>Hybrid</option>
-                                                <option value="all" @if ($job_applications->location == 'all') selected @endif>All</option>
-                                            </select>
-                                            <label class="label-me" for="">What is your working type preference</label>
-                                            <select name="working_type" id="">
-                                                <option value="">select your working type preference</option>
-                                                <option value="part-time" @if ($job_applications->working_type == 'part-time') selected @endif>Part time</option>
-                                                <option value="full-time" @if ($job_applications->working_type == 'full-time') selected @endif>Full time</option>
-                                                <option value="pamanent" @if ($job_applications->working_type == 'pamanent') selected @endif>Parmanent</option>
-                                            </select>
-                                            <label class="label-me" for="">Will you be willing to move for a job</label>
-                                            <select name="willing_to_move" id="">
-                                                <option value="">Select your willingness to move for a job
-                                                    </option>
-                                                <option value="yes" @if($job_applications->willing_to_move == 'yes') selected @endif>Yes</option>
-                                                <option value="no"  @if($job_applications->willing_to_move == 'no') selected @endif>No</option>
-                                            </select>
-                                            <label class="label-me" for="">What is your salary expectation (€)</label>
-                                            <input type="number" name="salary" value="{{$job_applications->salary}}" min="1.00" max="100000000" step="0.1" placeholder="10000">
-                                            <br><br>
-                                            <button type="submit" class="btn btn-primary"> Submit </button>
-                                        </form>
-                                        @endforeach
+                                        {{-- check if job_application is empty and continue --}}
+                                        @if(empty($job_applications[0]->job_title))
+                                            <form action="{{route('job_application')}}" method="post">
+                                                @csrf
+                                                <label class="label-me" for="">What is your specilization</label>
+                                                <input type="text" name="job_title" placeholder="Backend developer">
+                                                <label class="label-me" for="">What is your job location preference</label>
+                                                <select name="location" id="">
+                                                    <option value="">select your location preference</option>
+                                                    <option value="on-site">On-site</option>
+                                                    <option value="remote">Remote</option>
+                                                    <option value="hybrid">Hybrid</option>
+                                                    <option value="all">All</option>
+                                                </select>
+                                                <label class="label-me" for="">What is your working type preference</label>
+                                                <select name="working_type" id="">
+                                                    <option value="">select your working type preference</option>
+                                                    <option value="part-time">Part time</option>
+                                                    <option value="full-time">Full time</option>
+                                                    <option value="pamanent">Parmanent</option>
+                                                </select>
+                                                <label class="label-me" for="">Will you be willing to move for a job</label>
+                                                <select name="willing_to_move" id="">
+                                                    <option value="">Select your willingness to move for a job
+                                                        </option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                                <label class="label-me" for="">What is your salary expectation (€)</label>
+                                                <input type="number" name="salary" min="1.00" max="100000000" step="0.1" placeholder="10000">
+                                                <br><br>
+                                                <button type="submit" class="btn btn-primary"> Submit </button>
+                                            </form>
+                                        @else
+                                        
+                                            @foreach ($job_applications as $job_applications) 
+                                            <form action="{{route('job_application')}}" method="post">
+                                                @csrf
+                                                <label class="label-me" for="">What is your specilization</label>
+                                                <input type="text" name="job_title" value="{{$job_applications->job_title}}" placeholder="Backend developer">
+                                                <label class="label-me" for="">What is your job location preference</label>
+                                                <select name="location" id="">
+                                                    <option value="">select your location preference</option>
+                                                    <option value="on-site" @if ($job_applications->location == 'on-site') selected @endif>On-site</option>
+                                                    <option value="remote" @if ($job_applications->location == 'remote') selected @endif>Remote</option>
+                                                    <option value="hybrid" @if ($job_applications->location == 'hybrid') selected @endif>Hybrid</option>
+                                                    <option value="all" @if ($job_applications->location == 'all') selected @endif>All</option>
+                                                </select>
+                                                <label class="label-me" for="">What is your working type preference</label>
+                                                <select name="working_type" id="">
+                                                    <option value="">select your working type preference</option>
+                                                    <option value="part-time" @if ($job_applications->working_type == 'part-time') selected @endif>Part time</option>
+                                                    <option value="full-time" @if ($job_applications->working_type == 'full-time') selected @endif>Full time</option>
+                                                    <option value="pamanent" @if ($job_applications->working_type == 'pamanent') selected @endif>Parmanent</option>
+                                                </select>
+                                                <label class="label-me" for="">Will you be willing to move for a job</label>
+                                                <select name="willing_to_move" id="">
+                                                    <option value="">Select your willingness to move for a job
+                                                        </option>
+                                                    <option value="yes" @if($job_applications->willing_to_move == 'yes') selected @endif>Yes</option>
+                                                    <option value="no"  @if($job_applications->willing_to_move == 'no') selected @endif>No</option>
+                                                </select>
+                                                <label class="label-me" for="">What is your salary expectation (€)</label>
+                                                <input type="number" name="salary" value="{{$job_applications->salary}}" min="1.00" max="100000000" step="0.1" placeholder="10000">
+                                                <br><br>
+                                                <button type="submit" class="btn btn-primary"> Submit </button>
+                                            </form>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>

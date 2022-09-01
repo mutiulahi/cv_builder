@@ -112,7 +112,7 @@ class Dashboard extends Controller
             'location' => 'required|string|max:255',
             'working_type' => 'required|string|max:255',
             'willing_to_move' => 'required|string|max:255',
-            'salary' => 'required|numeric|max:255',
+            'salary' => 'required|numeric|min:255',
         ]); 
         $user_id = Auth::user()->unique_id;
         // find job application by user id 
