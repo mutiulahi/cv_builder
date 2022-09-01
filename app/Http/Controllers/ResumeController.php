@@ -291,8 +291,8 @@ class ResumeController extends Controller
         $pic_profile = 'data:image/' . $type_profile . ';base64,' . base64_encode($data_profile); 
 
 
-        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);        
-        $pdf->loadView('template.template_1', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials', 'pic_logo', 'pic_profile'))->setOptions(['defaultFont' => 'palatino']);
+        // $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);        
+        $pdf= PDF::loadView('template.template_1', compact('personal_detail', 'educations', 'experiences', 'skills', 'socials', 'pic_logo', 'pic_profile'))->setOptions(['defaultFont' => 'palatino']);
         
         return $pdf->stream();
     }
