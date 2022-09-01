@@ -9,8 +9,8 @@ use App\Models\Education;
 use App\Models\Work_experience;
 use App\Models\Skill;
 use App\Models\Social;
-use Barryvdh\DomPDF\Facade\PDF;
-// use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 // use PDF;
 use Illuminate\Support\Facades\Storage;
 
